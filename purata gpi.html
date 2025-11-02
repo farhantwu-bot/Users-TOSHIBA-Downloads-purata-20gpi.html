@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kira Purata Markah Subjek</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        form { margin-bottom: 20px; }
+        label { display: block; margin: 10px 0 5px; }
+        input { padding: 5px; width: 100%; max-width: 200px; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        #hasil { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <h1>Kira Purata Nilai Berdasarkan Markah Subjek</h1>
+    <p>Sila masukkan markah (dalam peratus, 0-100) untuk setiap subjek:</p>
+    
+    <form id="markahForm">
+        <label for="bahasa_melayu">Bahasa Melayu (%):</label>
+        <input type="number" id="bahasa_melayu" min="0" max="100" required>
+        
+        <label for="bahasa_english">Bahasa English (%):</label>
+        <input type="number" id="bahasa_english" min="0" max="100" required>
+        
+        <label for="matematik">Matematik (%):</label>
+        <input type="number" id="matematik" min="0" max="100" required>
+        
+        <label for="sains">Sains (%):</label>
+        <input type="number" id="sains" min="0" max="100" required>
+        
+        <label for="sejarah">Sejarah (%):</label>
+        <input type="number" id="sejarah" min="0" max="100" required>
+        
+        <label for="geografi">Geografi (%):</label>
+        <input type="number" id="geografi" min="0" max="100" required>
+        
+        <label for="reka_bentuk">Reka Bentuk dan Teknologi (%):</label>
+        <input type="number" id="reka_bentuk" min="0" max="100" required>
+        
+        <label for="pendidikan_islam">Pendidikan Islam (%):</label>
+        <input type="number" id="pendidikan_islam" min="0" max="100" required>
+        
+        <button type="button" onclick="kiraPurata()">Kira Purata</button>
+    </form>
+    
+    <div id="hasil"></div>
+    
+    <script>
+        function hitungNilaiNumerik(markah) {
+            if (markah >= 82 && markah <= 100) return 1; // Gred A
+            if (markah >= 66 && markah <= 81) return 2; // Gred B
+            if (markah >= 50 && markah <= 65) return 3; // Gred C
+            if (markah >= 35 && markah <= 49) return 4; // Gred D
+            if (markah >= 20 && markah <= 34) return 5; // Gred E
+            if (markah >= 0 && markah <= 19) return 6; // Gred F
+            return null; // Tidak valid
+        }
+        
+        function kiraPurata() {
+            const subjek = [
+                { nama: "Bahasa Melayu", id: "bahasa_melayu" },
+                { nama: "Bahasa English", id: "bahasa_english" },
+                { nama: "Matematik", id: "matematik" },
+                { nama: "Sains", id: "sains" },
+                { nama: "Sejarah", id: "sejarah" },
+                { nama: "Geografi", id: "geografi" },
+                { nama: "Reka Bentuk dan Teknologi", id: "reka_bentuk" },
+                { nama: "Pendidikan Islam", id: "pendidikan_islam" }
+            ];
+            
+            let totalNilaiNumerik = 0;
+            let ringkasan = "<h2>✅ Ringkasan Keputusan Anda:</h2><ul>";
+            let semuaValid = true;
+            
+            subjek.forEach(sub => {
+                const markah = parseFloat(document.getElementById(sub.id).value);
+                if (isNaN(markah) || markah < 0 || markah > 100) {
+                    alert(`Markah untuk ${sub.nama} mestilah antara 0 dan 100.`);
+                    semuaValid = false;
+                    return;
+                }
+                const nilaiNumerik = hitungNilaiNumerik(markah);
+                if (nilaiNumerik === null) {
+                    alert(`Markah untuk ${sub.nama} tidak valid.`);
+                    semuaValid = false;
+                    return;
+                }
+                totalNilaiNumerik += nilaiNumerik;
+                ringkasan += `<li>${sub.nama}: Markah ${markah.toFixed(2)}% (Nilai Numerik: ${nilaiNumerik})</li>`;
+            });
+            
+            if (!semuaValid) return;
+            
+            ringkasan += "</ul>";
+            const purata = totalNilaiNumerik / 8;
+            ringkasan += `<p><strong>🔢 Jumlah Keseluruhan Nilai Numerik (Total):</strong> ${totalNilaiNumerik}</p>`;
+            ringkasan += `<p><strong>➗ Purata Nilai Numerik (Total / 8):</strong> ${purata.toFixed(2)}</p>`;
+            ringkasan += "<p>semoga berjaya dihadapan✨</p>";
+            
+            document.getElementById("hasil").innerHTML = ringkasan;
+        }
+    </script>
+</body>
+</html>
