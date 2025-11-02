@@ -1,0 +1,103 @@
+/* Gaya umum untuk badan halaman */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Gaya untuk tajuk utama */
+h1 {
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Gaya untuk perenggan */
+p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Gaya untuk borang */
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Gaya untuk label input */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+/* Gaya untuk input */
+input {
+    padding: 8px;
+    width: 100%;
+    max-width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Gaya untuk butang */
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Gaya hover untuk butang */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Gaya untuk bahagian hasil */
+#hasil {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+/* Gaya untuk senarai dalam hasil */
+#hasil ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#hasil li {
+    margin-bottom: 5px;
+}
+
+/* Gaya untuk teks kuat (bold) */
+#hasil strong {
+    color: #4CAF50;
+}
+
+/* Responsiviti untuk peranti mudah alih */
+@media (max-width: 600px) {
+    form, #hasil {
+        max-width: 90%;
+    }
+    h1 {
+        font-size: 24px;
+    }
+}
